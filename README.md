@@ -14,14 +14,13 @@ Or let's imagine you use public transport every day, after a while the applicati
 Another use case is when spending money in a category is regular but with different amounts, for example, every Saturday you shop for groceries for a week, the application will **force** you complete the payment.
 
 ---
+## POC of the project
+
+---
 ## MVC of the project
 
 ---
 ## User stories
 
----
-## Tech stack
 
----
-## Documentation
 
