@@ -5,7 +5,7 @@
 
 There are many financial accounting applications, but the main **disadvantage** of these applications is that they require **significant effort** to enter data into the application.
 
-The idea of this project is to create an application that will not only take into account income and expenses of funds, but also provide the ability to plan and create schedules based on statistical data.
+The idea of this project is to create an application that will not only take into account income and costs of funds, but also provide the ability to plan and create schedules based on statistical data.
 
 The main objective of this project is to make it **as simple as possible**.
 
@@ -14,13 +14,34 @@ Or let's imagine you use public transport every day, after a while the applicati
 Another use case is when spending money in a category is regular but with different amounts, for example, every Saturday you shop for groceries for a week, the application will **force** you complete the payment.
 
 ---
-## POC of the project
+## POC scope of the project
+
+1. Create wireframes for POC
+2. Create a simple disign
+3. Create DB structure
+4. Create backend based on Fastify-Prisma
+5. Create frontend based on React
 
 ---
-## MVC of the project
+## User stories for POC
+1. As a user I want to sign up (without confirmation)
+2. As a user I want to log in
+3. As a user I want to log out
+4. As a user I want to get the main list of categories by the default
+5. As a user I want to create a new category
+6. As a user I want to add my credit cards/bank account
+7. As a user I want to apply the initial balance in my credit cards/bank account
+8. As a user I want to reflect my income by categories
+9. As a user I want to reflect my costs by categories
+10. As a user I want to see my current balance in my credit cards/bank account
+11. As a user I want to see income by category and in general for the current month
+12. As a user I want to see costs by category and in general for the current month
+13. As a user I want to see the costs for each transaction
 
 ---
-## User stories
+## MVC scope of the project
+1. 
 
+ 
 
 
