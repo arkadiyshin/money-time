@@ -11,9 +11,10 @@ datasource db {
 }
 
 generator erd {
-  provider = "prisma-erd-generator"
-  output   = "../_resources_/ERD.md"
-  theme    = "forest"
+  provider                  = "prisma-erd-generator"
+  output                    = "../_resources_/ERD.md"
+  theme                     = "forest"
+  includeRelationFromFields = true
 }
 
 // TYPES

@@ -23,6 +23,7 @@ costs costs
     Int id PK 
     String name  
     Bytes file  
+    Int categoryIconId  
     }
   
 
@@ -37,6 +38,7 @@ costs costs
   Category {
     Int id PK 
     String name  
+    Int iconId  
     TransferType type  
     Boolean default  
     }
@@ -45,6 +47,8 @@ costs costs
   SubCategory {
     Int id PK 
     String name  
+    Int categoryId  
+    Int iconId  
     Boolean default  
     }
   
@@ -54,6 +58,7 @@ costs costs
     BankAccountType type  
     String name  
     DateTime expirationDate  
+    Int currencyId  
     Boolean deleted  
     }
   
@@ -71,12 +76,14 @@ costs costs
   
 
   UserCategory {
-
+    Int accountId  
+    Int categoryId  
     }
   
 
   UserSubCategory {
-
+    Int accountId  
+    Int subCategoryId  
     }
   
 
@@ -85,6 +92,10 @@ costs costs
     DateTime dateAt  
     DateTime updateAt  
     TransferType type  
+    Int accountId  
+    Int categoryId  
+    Int subCategoryId  
+    Int bankAccountId  
     Float amount  
     Boolean deleted  
     }
@@ -97,6 +108,10 @@ costs costs
   
 
   Schedule {
+    Int scheduleModelId  
+    Int accountId  
+    Int categoryId  
+    Int subCategoryId  
     Float defaultAmount  
     Json schema  
     }
