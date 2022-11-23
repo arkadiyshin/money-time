@@ -21,9 +21,7 @@ export default fp<FastifyDynamicSwaggerOptions>(async (app) => {
                 consumes: ['application/json'],
                 produces: ['application/json'],
                 tags: [
-                    { name: 'user', description: 'User related end-points' },
-                    { name: 'case', description: 'Case related end-points' },
-                    { name: 'appointment', description: 'Appointment related end-points' },
+                    { name: 'user', description: 'User related endpoints' },
                 ],
             }
         });

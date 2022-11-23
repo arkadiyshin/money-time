@@ -11,7 +11,7 @@ export default fp<FastifySwaggerUiOptions>(async (app) => {
                 deepLinking: false
             },
             hideUntagged: true,
-            routePrefix: '/docs',
+            routePrefix: '/api',
             staticCSP: true,
         })
 
