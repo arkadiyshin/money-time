@@ -1,5 +1,5 @@
 # MONEY-TIME
-
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 ---
 ## Idea of the project
 
