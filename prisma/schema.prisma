@@ -9,3 +9,149 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "../_resources_/ERD.md"
+  theme    = "forest"
+}
+
+// TYPES
+enum BankAccountType {
+  creditCard
+  bankAccount
+}
+
+enum TransferType {
+  income
+  costs
+}
+
+// MODELS
+
+// income | costs | 
+model CategoryIcon {
+  id   Int    @id @default(autoincrement())
+  name String @default("") @db.VarChar(50)
+  Icon Icon[]
+}
+
+model Icon {
+  id             Int           @id @default(autoincrement())
+  name           String        @default("") @db.VarChar(50)
+  file           Bytes         @db.ByteA
+  categoryIconId Int
+  CategoryIcon   CategoryIcon  @relation(fields: [categoryIconId], references: [id])
+  Category       Category[]
+  SubCategory    SubCategory[]
+}
+
+model Currency {
+  code    Int     @id
+  codeS   String  @default("") @db.Char(3)
+  name    String  @default("") @db.VarChar(50)
+  default Boolean @default(false)
+}
+
+model Category {
+  id            Int             @id @default(autoincrement())
+  name          String          @default("") @db.VarChar(50)
+  iconId        Int
+  Icon          Icon            @relation(fields: [iconId], references: [id])
+  type          TransferType    @default(costs)
+  default       Boolean         @default(false)
+  UserCategory  UserCategory[]
+  SubCategory   SubCategory[]
+  MoneyTransfer MoneyTransfer[]
+  Schedule      Schedule[]
+}
+
+model SubCategory {
+  id              Int               @id @default(autoincrement())
+  name            String            @default("") @db.VarChar(50)
+  categoryId      Int
+  Category        Category          @relation(fields: [categoryId], references: [id])
+  iconId          Int
+  Icon            Icon              @relation(fields: [iconId], references: [id])
+  default         Boolean           @default(false)
+  UserSubCategory UserSubCategory[]
+  MoneyTransfer   MoneyTransfer[]
+  Schedule        Schedule[]
+}
+
+model BankAccount {
+  id             Int             @id @default(autoincrement())
+  type           BankAccountType
+  name           String          @default("") @db.VarChar(50)
+  expirationDate DateTime        @db.Date
+  deleted        Boolean         @default(false)
+}
+
+model Account {
+  id              Int               @id @default(autoincrement())
+  username        String            @db.VarChar(50)
+  email           String            @db.VarChar(50)
+  firstName       String            @db.VarChar(50)
+  lastName        String            @db.VarChar(50)
+  hashPassword    String            @db.VarChar(512)
+  createAt        DateTime          @default(now())
+  deleted         Boolean           @default(false)
+  UserCategory    UserCategory[]
+  UserSubCategory UserSubCategory[]
+  MoneyTransfer   MoneyTransfer[]
+  Schedule        Schedule[]
+}
+
+model UserCategory {
+  accountId  Int
+  Account    Account  @relation(fields: [accountId], references: [id])
+  categoryId Int
+  Category   Category @relation(fields: [categoryId], references: [id])
+
+  @@unique(fields: [accountId, categoryId], name: "FK_UserCategory")
+}
+
+model UserSubCategory {
+  accountId     Int
+  Account       Account     @relation(fields: [accountId], references: [id])
+  subCategoryId Int
+  SubCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
+
+  @@unique(fields: [accountId, subCategoryId], name: "FK_UserSubCategory")
+}
+
+model MoneyTransfer {
+  uuid          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  dateAt        DateTime     @default(now())
+  updateAt      DateTime     @updatedAt
+  type          TransferType @default(costs)
+  accountId     Int
+  Account       Account      @relation(fields: [accountId], references: [id])
+  categoryId    Int
+  Category      Category     @relation(fields: [categoryId], references: [id])
+  subCategoryId Int
+  SubCategory   SubCategory  @relation(fields: [subCategoryId], references: [id])
+  amount        Float        @default(0) @db.DoublePrecision
+  deleted       Boolean      @default(false)
+}
+
+model ScheduleModel {
+  id       Int        @id @default(autoincrement())
+  name     String     @default("")
+  Schedule Schedule[]
+}
+
+model Schedule {
+  scheduleModelId Int
+  ScheduleModel   ScheduleModel @relation(fields: [scheduleModelId], references: [id])
+  accountId       Int
+  Account         Account       @relation(fields: [accountId], references: [id])
+  categoryId      Int
+  Category        Category      @relation(fields: [categoryId], references: [id])
+  subCategoryId   Int
+  SubCategory     SubCategory   @relation(fields: [subCategoryId], references: [id])
+  defaultAmount   Float         @default(0) @db.DoublePrecision
+  schema          Json          @db.JsonB
+
+  @@unique(fields: [accountId, categoryId, subCategoryId], name: "FK_Schedule")
+}
