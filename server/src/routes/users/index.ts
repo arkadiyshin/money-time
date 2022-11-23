@@ -23,8 +23,8 @@ export default async (app: FastifyInstance) => {
 	app.get('/', { schema: getUsersSchema }, getUsersHandler)
 	app.get('/:userId', { schema: getUserByIdSchema }, getUserByIdHandler)
 	app.post('/', { schema: postUserSchema }, postUserHandler)
-    app.put('/userId', { schema: putUserSchema }, putUserHandler)
-    app.delete('/userId', { schema: deleteUserSchema }, deleteUserHandler)
+    app.put('/:userId', { schema: putUserSchema }, putUserHandler)
+    app.delete('/:userId', { schema: deleteUserSchema }, deleteUserHandler)
 
 };
 
