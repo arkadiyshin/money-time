@@ -137,7 +137,7 @@ model MoneyTransfer {
   subCategoryId Int
   SubCategory   SubCategory  @relation(fields: [subCategoryId], references: [id])
   bankAccountId Int
-  BancAccount   BankAccount  @relation(fields: [bankAccountId], references: [id])
+  BankAccount   BankAccount  @relation(fields: [bankAccountId], references: [id])
   amount        Float        @default(0) @db.DoublePrecision
   deleted       Boolean      @default(false)
 }
