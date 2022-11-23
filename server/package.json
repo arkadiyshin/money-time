@@ -35,6 +35,7 @@
     "@types/node": "^18.0.0",
     "@types/tap": "^15.0.5",
     "concurrently": "^7.0.0",
+    "cz-conventional-changelog": "^3.3.0",
     "fastify-tsconfig": "^1.0.1",
     "json-schema-to-ts": "^2.6.1",
     "prisma": "^4.6.1",
@@ -43,5 +44,13 @@
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4",
     "validate-commit-msg": "^2.14.0"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "types": "conventional-commit-types"
+    },
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
