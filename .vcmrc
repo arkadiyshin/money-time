@@ -16,7 +16,9 @@
         "required": true,
         "allowed": [
             "app",
-            "model"
+            "client",
+            "model",
+            "user"
         ],
         "validate": true,
         "multiple": false

@@ -1,0 +1,17 @@
+# Dependency directories
+node_modules
+
+# mac files
+.DS_Store
+
+# clinic
+profile*
+*clinic*
+*flamegraph*
+
+# generated code
+examples/typescript-server.js
+test/types/index.js
+
+# compiled app
+dist

@@ -12,9 +12,8 @@
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
-    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
-    "prepare": "husky install",
-    "commit": "git-cz"
+    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js"
+    
   },
   "keywords": [],
   "author": "",
@@ -26,7 +25,6 @@
     "@fastify/swagger": "^8.1.0",
     "@fastify/swagger-ui": "^1.2.0",
     "@prisma/client": "^4.6.1",
-    "commitizen": "^4.2.5",
     "fastify": "^4.0.0",
     "fastify-cli": "^5.5.1",
     "fastify-plugin": "^4.3.0"
@@ -35,22 +33,14 @@
     "@types/node": "^18.0.0",
     "@types/tap": "^15.0.5",
     "concurrently": "^7.0.0",
-    "cz-conventional-changelog": "^3.3.0",
     "fastify-tsconfig": "^1.0.1",
+    "husky": "^8.0.2",
     "json-schema-to-ts": "^2.6.1",
     "prisma": "^4.6.1",
     "prisma-erd-generator": "^1.2.4",
     "tap": "^16.1.0",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.4",
-    "validate-commit-msg": "^2.14.0"
-  },
-  "config": {
-    "validate-commit-msg": {
-      "types": "conventional-commit-types"
-    },
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
+    "typescript": "^4.5.4"
   }
+  
 }
