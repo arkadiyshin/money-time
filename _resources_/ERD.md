@@ -131,7 +131,7 @@ costs costs
     MoneyTransfer o{--|| Account : "Account"
     MoneyTransfer o{--|| Category : "Category"
     MoneyTransfer o{--|| SubCategory : "SubCategory"
-    MoneyTransfer o{--|| BankAccount : "BancAccount"
+    MoneyTransfer o{--|| BankAccount : "BankAccount"
     Schedule o{--|| ScheduleModel : "ScheduleModel"
     Schedule o{--|| Account : "Account"
     Schedule o{--|| Category : "Category"
