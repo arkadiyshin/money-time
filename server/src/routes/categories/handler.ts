@@ -9,7 +9,10 @@ export const getCategoriesHandler: RouteHandler<{
     Reply: ReplyList
 }> = async function (req, reply) {
 
-    reply.code(200).send({ success: true, message: `${route} list` })
+    const records = await req.server.prisma.category.findMany({});
+
+    reply.code(200).send({ success: true, message: `${route} list`, categories: records })
+
 
 }
 
@@ -19,11 +22,19 @@ export const getCategoryByIdHandler: RouteHandler<{
 }> = async function (req, reply) {
 
 
-    if (true) {
-        reply.code(200).send({ success: true, message: `${route} found` })
+    const {categoryId} = req.params;
+    const record = await req.server.prisma.category.findUnique({
+        where: {
+            id: categoryId
+        }
+    });
+    
+    if (record) {
+        reply.code(200).send({ success: true, message: `${route} found`, category: record })
     } else {
         reply.code(404).send({ success: true, message: `${route} not found` })
     }
+
 }
 
 export const postCategoryHandler: RouteHandler<{
