@@ -99,8 +99,38 @@ export type Params = FromSchema<typeof paramsSchema>
 export type Querystring = FromSchema<typeof querystringSchema>
 export type BodyCreate = FromSchema<typeof createSchema>
 export type Body = FromSchema<typeof fullSchema>
-export type Reply = FromSchema<typeof replySchema, { references: [typeof fullSchema] }>
-export type ReplyList = FromSchema<typeof replyListSchema, { references: [typeof fullSchema] }>
+export type Reply = FromSchema<typeof replySchema, { references: [typeof fullSchema], deserialize: [
+  {
+    pattern: {
+      type: "string";
+      format: "date";
+    };
+    output: Date;
+  },
+  {
+    pattern: {
+      type: "string";
+      format: "date-time";
+    };
+    output: Date;
+  }
+]; }>
+export type ReplyList = FromSchema<typeof replyListSchema, { references: [typeof fullSchema], deserialize: [
+  {
+    pattern: {
+      type: "string";
+      format: "date";
+    };
+    output: Date;
+  },
+  {
+    pattern: {
+      type: "string";
+      format: "date-time";
+    };
+    output: Date;
+  }
+]; }>
 
 /** 
  * Route Options

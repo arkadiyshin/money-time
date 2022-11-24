@@ -17,7 +17,7 @@ export const getUsersHandler: RouteHandler<{
 
 export const getUserByIdHandler: RouteHandler<{
     Params: Params
-    Reply: Reply | NotFound | any
+    Reply: Reply | NotFound
 }> = async function (req, reply) {
     
     const {userId} = req.params;
@@ -28,8 +28,7 @@ export const getUserByIdHandler: RouteHandler<{
     });
 
     if (record) {
-        const {createAt,...user} = record;
-        reply.code(200).send({ success: true, message: `${route} found`, user: {createAt, ...user} })
+        reply.code(200).send({ success: true, message: `${route} found`, user: record })
     } else {
         reply.code(404).send({ success: true, message: `${route} not found` })
     }
