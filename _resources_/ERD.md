@@ -57,10 +57,12 @@ costs costs
 
   BankAccount {
     Int id PK 
+    Int accountId  
     BankAccountType type  
     String name  
     DateTime expirationDate  
     Int currencyId  
+    Boolean default  
     Boolean deleted  
     }
   
@@ -80,12 +82,14 @@ costs costs
   UserCategory {
     Int accountId  
     Int categoryId  
+    Boolean deleted  
     }
   
 
   UserSubCategory {
     Int accountId  
     Int subCategoryId  
+    Boolean deleted  
     }
   
 
@@ -125,6 +129,7 @@ costs costs
     Category o|--|| TransferType : "enum:type"
     SubCategory o{--|| Category : "Category"
     SubCategory o{--|| Icon : "Icon"
+    BankAccount o{--|| Account : "Account"
     BankAccount o|--|| BankAccountType : "enum:type"
     BankAccount o{--|| Currency : "Currency"
     UserCategory o{--|| Account : "Account"
