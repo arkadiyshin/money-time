@@ -33,7 +33,7 @@ export const postUserHandler: RouteHandler<{
 }> = async function (req, reply) {
 
     if (true) {
-        reply.code(200).send({ success: true, message: `${route} created` })
+        reply.code(201).send({ success: true, message: `${route} created` })
     } else {
         reply.code(404).send({ success: true, message: `${route} not created` })
     }
@@ -46,7 +46,7 @@ export const putUserHandler: RouteHandler<{
 }> = async function (req, reply) {
 
     if (true) {
-        reply.code(200).send({ success: true, message: `${route} updated` })
+        reply.code(201).send({ success: true, message: `${route} updated` })
     } else {
         reply.code(404).send({ success: true, message: `${route} not found` })
     }
@@ -58,7 +58,7 @@ export const deleteUserHandler: RouteHandler<{
 }> = async function (req, reply) {
 
     if (true) {
-        reply.code(200).send({ success: true, message: `${route} deleted` })
+        reply.code(204).send({ success: true, message: `${route} deleted` })
     } else {
         reply.code(404).send({ success: true, message: `${route} not found` })
     }
