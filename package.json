@@ -4,7 +4,7 @@
   "description": "[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) --- ## Idea of the project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd ../server && npm run build:ts && tsc -p test/tsconfig.json && tap --ts \"test/**/*.test.ts\"",
     "prepare": "husky install",
     "commitmsg": "validate-commit-msg",
     "commit": "git-cz"
