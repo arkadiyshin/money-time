@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-export const getEnvValue = (keyname : string) : any => {
+export const getEnvValue = (keyname : string) : unknown => {
     
     const envVar = process.env[keyname];
     if (!envVar) {
