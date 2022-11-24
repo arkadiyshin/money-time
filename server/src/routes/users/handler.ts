@@ -9,18 +9,27 @@ export const getUsersHandler: RouteHandler<{
     Reply: ReplyList
 }> = async function (req, reply) {
 
-    reply.code(200).send({ success: true, message: `${route} list` })
+    const records = await req.server.prisma.account.findMany({});
+
+    reply.code(200).send({ success: true, message: `${route} list`, users: records })
 
 }
 
 export const getUserByIdHandler: RouteHandler<{
     Params: Params
-    Reply: Reply | NotFound
+    Reply: Reply | NotFound | any
 }> = async function (req, reply) {
+    
+    const {userId} = req.params;
+    const record = await req.server.prisma.account.findUnique({
+        where: {
+            id: userId
+        }
+    });
 
-
-    if (true) {
-        reply.code(200).send({ success: true, message: `${route} found` })
+    if (record) {
+        const {createAt,...user} = record;
+        reply.code(200).send({ success: true, message: `${route} found`, user: {createAt, ...user} })
     } else {
         reply.code(404).send({ success: true, message: `${route} not found` })
     }
