@@ -41,6 +41,7 @@ costs costs
     Int iconId  
     TransferType type  
     Boolean default  
+    Boolean deleted  
     }
   
 
@@ -50,6 +51,7 @@ costs costs
     Int categoryId  
     Int iconId  
     Boolean default  
+    Boolean deleted  
     }
   
 
@@ -104,6 +106,7 @@ costs costs
   ScheduleModel {
     Int id PK 
     String name  
+    Boolean deleted  
     }
   
 
@@ -114,6 +117,7 @@ costs costs
     Int subCategoryId  
     Float defaultAmount  
     Json schema  
+    Boolean deleted  
     }
   
     Icon o{--|| CategoryIcon : "CategoryIcon"
