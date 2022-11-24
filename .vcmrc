@@ -18,7 +18,8 @@
             "app",
             "client",
             "model",
-            "user"
+            "user",
+            "category"
         ],
         "validate": true,
         "multiple": false
