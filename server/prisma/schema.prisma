@@ -85,11 +85,14 @@ model SubCategory {
 
 model BankAccount {
   id             Int             @id @default(autoincrement())
+  accountId      Int
+  Account        Account         @relation(fields: [accountId], references: [id])
   type           BankAccountType
   name           String          @default("") @db.VarChar(50)
   expirationDate DateTime        @db.Date
   currencyId     Int
   Currency       Currency        @relation(fields: [currencyId], references: [code])
+  default        Boolean         @default(false)
   deleted        Boolean         @default(false)
   MoneyTransfer  MoneyTransfer[]
 }
@@ -107,6 +110,7 @@ model Account {
   UserSubCategory UserSubCategory[]
   MoneyTransfer   MoneyTransfer[]
   Schedule        Schedule[]
+  BankAccount     BankAccount[]
 }
 
 model UserCategory {
@@ -114,6 +118,7 @@ model UserCategory {
   Account    Account  @relation(fields: [accountId], references: [id])
   categoryId Int
   Category   Category @relation(fields: [categoryId], references: [id])
+  deleted    Boolean  @default(false)
 
   @@unique(fields: [accountId, categoryId], name: "FK_UserCategory")
 }
@@ -123,6 +128,7 @@ model UserSubCategory {
   Account       Account     @relation(fields: [accountId], references: [id])
   subCategoryId Int
   SubCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
+  deleted       Boolean     @default(false)
 
   @@unique(fields: [accountId, subCategoryId], name: "FK_UserSubCategory")
 }
