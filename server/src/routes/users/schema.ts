@@ -131,7 +131,6 @@ export const postUserSchema: FastifySchema = {
   summary: `create ${route}`,
   description: `create ${route}`,
   tags: [route],
-  params: paramsSchema,
   body: createSchema,
   response: {
     201: replySchema,
