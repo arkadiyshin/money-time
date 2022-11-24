@@ -62,6 +62,7 @@ model Category {
   Icon          Icon            @relation(fields: [iconId], references: [id])
   type          TransferType    @default(costs)
   default       Boolean         @default(false)
+  deleted       Boolean         @default(false)
   UserCategory  UserCategory[]
   SubCategory   SubCategory[]
   MoneyTransfer MoneyTransfer[]
@@ -76,6 +77,7 @@ model SubCategory {
   iconId          Int
   Icon            Icon              @relation(fields: [iconId], references: [id])
   default         Boolean           @default(false)
+  deleted         Boolean           @default(false)
   UserSubCategory UserSubCategory[]
   MoneyTransfer   MoneyTransfer[]
   Schedule        Schedule[]
@@ -146,6 +148,7 @@ model ScheduleModel {
   id       Int        @id @default(autoincrement())
   name     String     @default("")
   Schedule Schedule[]
+  deleted  Boolean    @default(false)
 }
 
 model Schedule {
@@ -159,6 +162,7 @@ model Schedule {
   SubCategory     SubCategory   @relation(fields: [subCategoryId], references: [id])
   defaultAmount   Float         @default(0) @db.DoublePrecision
   schema          Json          @db.JsonB
+  deleted         Boolean       @default(false)
 
   @@unique(fields: [accountId, categoryId, subCategoryId], name: "FK_Schedule")
 }
