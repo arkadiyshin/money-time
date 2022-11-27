@@ -18,7 +18,10 @@
             "app",
             "client",
             "model",
-            "api"
+            "api",
+            "redux",
+            "style",
+            "route"
         ],
         "validate": true,
         "multiple": false
